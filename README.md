@@ -2,17 +2,18 @@
 
 ## Overview
 
-The `surflineapi` Go package provides type definitions to work with the Surfline API. It includes type structures for various forecast data, including wave, wind, sunlight, tides, and more. Whether you're building a surf forecast app or analyzing surf data, this package will help streamline your integration with the Surfline API.
+The `surflineapi` Go package facilitates seamless interactions with the Surfline API, allowing developers to fetch various forecast data including wave, wind, sunlight, tides, weather, and nearby buoys' information. It's designed to simplify the process of integrating Surfline data into your Go applications.
 
 ## Features
 
-- **Comprehensive Type Definitions**: Covers all the expected responses from the Surfline API, making data parsing and usage a breeze.
-- **Clean & Organized**: Structs are organized based on their respective forecast data type to make it intuitive and easy to navigate.
-- **Flexibility**: With clearly defined types, it's easy to extend or modify the package based on unique requirements.
+- **Direct API Interactions**: Easily fetch data directly from Surfline with the provided methods.
+- **Built-in HTTP Client**: Inbuilt HTTP client to manage requests, with the ability to use your custom client if required.
+- **Strongly Typed Responses**: Enjoy type-safe responses for all the API interactions.
+- **Comprehensive Coverage**: Covering a vast range of forecasts from regions, spots, and buoy data.
 
 ## Installation
 
-Use `go get` to fetch the package:
+Fetch the package using `go get`:
 
 ```bash
 go get github.com/mdecourcy/go-surfline-api
@@ -23,38 +24,40 @@ go get github.com/mdecourcy/go-surfline-api
 1. Import the package:
 
 ```go
-import "github.com/yourusername/surflineapi"
+import "github.com/mdecourcy/go-surfline-api"
 ```
 
-2. Call the provided functions:
+2. Initialize the API client and make calls:
+
 ```go
-conditions, err := api.GetRegionsForecastConditions("58581a836630e24c4487900d", 5)
-	if err != nil {
-		fmt.Println("Error fetching forecast conditions:", err)
-		return
-	}
-	fmt.Println(conditions)
+apiClient := &surflineapi.SurflineAPI{
+    HTTPClient: http.DefaultClient,
+}
+
+// Example: Fetching Wave Forecast for a spot
+forecast, err := apiClient.GetWaveForecast("spotId", 7, 1)
+if err != nil {
+    log.Fatal(err)
+}
+// Process the forecast data...
 ```
 
-3. Use the fetched data as per your application's needs.
+## Available Methods
 
-## Structs Included
-
-- `LatLng`: General type for latitude and longitude.
-- `Units`: Measurement units used in forecasts.
-- `RegionsForecastConditionsResponse`: Regional forecast conditions.
-- `SpotForecastRatingResponse`: Rating for specific spots.
-- `WaveForecastResponse`: Detailed wave forecast data.
-- `WindForecastResponse`: Wind-related forecast data.
-- `SunlightForecastResponse`: Sunlight timings and details.
-- `TideForecastResponse`: Tide-related forecast data.
-
-... and many more for detailed data parsing.
+- `GetRegionsForecastConditions(subregionId string, days int)`: Fetches regional forecast conditions.
+- `GetSpotForecastRating(spotId string, days int, intervalHours int)`: Fetches forecast ratings for specific spots.
+- `GetWaveForecast(spotId string, days int, intervalHours int)`: Retrieves wave forecast data.
+- `GetWindForecast(spotId string, days int, intervalHours int, corrected bool, cacheEnabled bool)`: Fetches wind forecast data.
+- `GetSunlightForecast(spotId string, days int, intervalHours int)`: Obtains sunlight forecast data.
+- `GetTideForecast(spotId string, days int)`: Grabs tide forecast data.
+- `GetWeatherForecast(spotId string, days int)`: Retrieves weather forecast data.
+- `GetNearbyBuoys(latitude, longitude float64, limit, distance int)`: Fetches nearby buoys based on given location parameters.
 
 ## Contributing
 
-Contributions are always welcome! Open an issue first, to start a discussion.
+Contributions are highly encouraged! Open an issue, first, to start a discussion.
+
 
 ---
 
-Happy coding and may you always find the perfect wave! 🌊🏄‍♂️
+May your code ride the perfect digital wave! 🌊🏄‍♂️🔧
