@@ -19,9 +19,6 @@ _cgo_export.*
 
 _testmain.go
 
-# Binary
-surflineapi
-
 # Dependency directories
 vendor/
 Godeps/
