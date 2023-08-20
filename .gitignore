@@ -1,0 +1,45 @@
+# Compiled Object files
+*.o
+*.a
+*.so
+
+# Folders
+_obj
+_test
+
+# Architecture-specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+# Binary
+surflineapi
+
+# Dependency directories
+vendor/
+Godeps/
+
+# IDE files
+.vscode/
+*.iml
+.idea/
+
+# macOS generated files
+.DS_Store
+
+# Log files
+*.log
+
+# Temp files
+*.tmp
+
+# Certs
+*.cert
+*.key
