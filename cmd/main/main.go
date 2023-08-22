@@ -55,4 +55,11 @@ func main() {
 	}
 	fmt.Println(GetNearbyBuoys)
 
+	GetTaxonomyDetails, err := api.GetTaxonomyDetails("58f7ed51dadb30820bb38791")
+	if err != nil {
+		fmt.Println("Error fetching taxonomy details:", err)
+		return
+	}
+	fmt.Println(GetTaxonomyDetails)
+
 }

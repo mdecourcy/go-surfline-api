@@ -87,3 +87,10 @@ func (api *SurflineAPI) GetNearbyBuoys(latitude, longitude float64, limit, dista
 	err := api.fetch(url, &buoysResponse)
 	return &buoysResponse, err
 }
+
+func (api *SurflineAPI) GetTaxonomyDetails(taxonomyId string) (*TaxonomyDetailsResponse, error) {
+	url := fmt.Sprintf("https://services.surfline.com/taxonomy?type=taxonomy&id=%s&maxDepth=0", taxonomyId)
+	var taxonomyResponse TaxonomyDetailsResponse
+	err := api.fetch(url, &taxonomyResponse)
+	return &taxonomyResponse, err
+}

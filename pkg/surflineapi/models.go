@@ -1,5 +1,7 @@
 package surflineapi
 
+import "time"
+
 // General types
 type LatLng struct {
 	Lon float64 `json:"lon"`
@@ -289,4 +291,106 @@ type NearbyBuoysResponse struct {
 			UTCOffset int `json:"utcOffset"`
 		} `json:"latestData"`
 	} `json:"data"`
+}
+
+type TaxonomyDetailsResponse struct {
+	ID        string   `json:"_id"`
+	GeonameID int      `json:"geonameId"`
+	Type      string   `json:"type"`
+	LiesIn    []string `json:"liesIn"`
+	Geonames  struct {
+		Population  int    `json:"population"`
+		Fcode       string `json:"fcode"`
+		Fcl         string `json:"fcl"`
+		Lat         string `json:"lat"`
+		AdminName1  string `json:"adminName1"`
+		FcodeName   string `json:"fcodeName"`
+		ToponymName string `json:"toponymName"`
+		FclName     string `json:"fclName"`
+		Name        string `json:"name"`
+		GeonameID   int    `json:"geonameId"`
+		Lng         string `json:"lng"`
+	} `json:"geonames"`
+	Location struct {
+		Coordinates []float64 `json:"coordinates"`
+		Type        string    `json:"type"`
+	} `json:"location"`
+	EnumeratedPath string `json:"enumeratedPath"`
+	Name           string `json:"name"`
+	Category       string `json:"category"`
+	HasSpots       bool   `json:"hasSpots"`
+	Associated     struct {
+		Links []any `json:"links"`
+	} `json:"associated"`
+	In []struct {
+		ID        string `json:"_id"`
+		GeonameID int    `json:"geonameId"`
+		Type      string `json:"type"`
+		Geonames  struct {
+			Population  int64  `json:"population"`
+			Fcode       string `json:"fcode"`
+			Fcl         string `json:"fcl"`
+			Lat         string `json:"lat"`
+			AdminName1  string `json:"adminName1"`
+			FcodeName   string `json:"fcodeName"`
+			ToponymName string `json:"toponymName"`
+			FclName     string `json:"fclName"`
+			Name        string `json:"name"`
+			GeonameID   int    `json:"geonameId"`
+			Lng         string `json:"lng"`
+		} `json:"geonames"`
+		Location struct {
+			Coordinates []int  `json:"coordinates"`
+			Type        string `json:"type"`
+		} `json:"location"`
+		EnumeratedPath string `json:"enumeratedPath"`
+		Name           string `json:"name"`
+		Category       string `json:"category"`
+		HasSpots       bool   `json:"hasSpots"`
+		LiesIn         []any  `json:"liesIn"`
+		Depth          int    `json:"depth"`
+		Associated     struct {
+			Links []any `json:"links"`
+		} `json:"associated"`
+	} `json:"in"`
+	Contains []struct {
+		ID        string   `json:"_id"`
+		GeonameID int      `json:"geonameId"`
+		Type      string   `json:"type"`
+		LiesIn    []string `json:"liesIn"`
+		Geonames  struct {
+			Fcode       string `json:"fcode"`
+			Lat         string `json:"lat"`
+			AdminName1  string `json:"adminName1"`
+			FcodeName   string `json:"fcodeName"`
+			CountryName string `json:"countryName"`
+			FclName     string `json:"fclName"`
+			Name        string `json:"name"`
+			CountryCode string `json:"countryCode"`
+			Population  int    `json:"population"`
+			Fcl         string `json:"fcl"`
+			CountryID   string `json:"countryId"`
+			ToponymName string `json:"toponymName"`
+			GeonameID   int    `json:"geonameId"`
+			Lng         string `json:"lng"`
+			AdminCode1  string `json:"adminCode1"`
+		} `json:"geonames"`
+		Location struct {
+			Coordinates []float64 `json:"coordinates"`
+			Type        string    `json:"type"`
+		} `json:"location"`
+		EnumeratedPath string `json:"enumeratedPath"`
+		Name           string `json:"name"`
+		Category       string `json:"category"`
+		HasSpots       bool   `json:"hasSpots"`
+		Depth          int    `json:"depth"`
+		Associated     struct {
+			Links []struct {
+				Key  string `json:"key"`
+				Href string `json:"href"`
+			} `json:"links"`
+		} `json:"associated"`
+		UpdatedAt time.Time `json:"updatedAt,omitempty"`
+		CreatedAt time.Time `json:"createdAt,omitempty"`
+	} `json:"contains"`
 }
